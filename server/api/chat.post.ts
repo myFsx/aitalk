@@ -1,4 +1,5 @@
 import { ASSISTANT_SYSTEM_PROMPT } from '../utils/assistant-system'
+import { toPlainChatText } from '../utils/plain-text'
 import { CHAT_TOOLS, runTool, type ToolCall } from '../utils/tools'
 
 interface ChatRequestBody {
@@ -183,7 +184,9 @@ export default defineEventHandler(async (event) => {
 
         // 无工具：直接伪流式输出首轮文本
         if (toolCalls.length === 0) {
-          const fullText = firstMessage?.content?.trim() || '我暂时没有合适的回答，请换个问法试试。'
+          const fullText = toPlainChatText(
+            firstMessage?.content?.trim() || '我暂时没有合适的回答，请换个问法试试。',
+          )
           const chunkSize = 8
           for (let i = 0; i < fullText.length; i += chunkSize) {
             controller.enqueue(toSse({
@@ -281,8 +284,14 @@ export default defineEventHandler(async (event) => {
           }
         }
 
+        const plain = toPlainChatText(fullText)
+        // 流式过程可能带出 Markdown，结束时用纯文本覆盖前端展示
+        if (plain !== fullText) {
+          controller.enqueue(toSse({ type: 'replace', content: plain }))
+        }
+
         const assistantMessage = await prisma.message.create({
-          data: { role: 'assistant', content: fullText, sessionId },
+          data: { role: 'assistant', content: plain, sessionId },
         })
 
         controller.enqueue(toSse({

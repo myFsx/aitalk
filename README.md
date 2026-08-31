@@ -2,8 +2,13 @@
 
 基于 **Nuxt 全栈** 的智能客服演示项目：手机聊天气泡 UI、SSE 流式回复、DeepSeek Function Calling（天气 API + 本地 FAQ）、PostgreSQL 会话记忆与历史管理。
 
-> 线上演示（部署后替换）：`https://你的域名/ai`  
-> 仓库：[https://github.com/myFsx/aitalk](https://github.com/myFsx/aitalk)
+仓库：[https://github.com/myFsx/aitalk](https://github.com/myFsx/aitalk)
+
+## 演示视频
+
+<video src="./docs/demo.mp4" controls width="360"></video>
+
+若上方无法播放，可直接下载：[docs/demo.mp4](./docs/demo.mp4)
 
 ---
 

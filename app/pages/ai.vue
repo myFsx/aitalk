@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { toPlainChatText } from '~/utils/plain-text'
+
 interface ChatMessage {
   id: string
   role: 'user' | 'assistant'
@@ -99,7 +101,7 @@ async function openSession(id: string) {
     messages.value = data.messages.map((m) => ({
       id: m.id,
       role: m.role,
-      content: m.content,
+      content: m.role === 'assistant' ? toPlainChatText(m.content) : m.content,
     }))
     error.value = ''
     question.value = ''
@@ -294,11 +296,21 @@ async function askAi() {
             target.content += event.content
             await scrollToBottom()
           }
+        } else if (event.type === 'replace' && typeof event.content === 'string') {
+          const target = messages.value.find((m) => m.id === assistantId)
+          if (target) {
+            target.content = event.content
+            await scrollToBottom()
+          }
         } else if (event.type === 'error') {
           error.value = event.message || 'AI 出错了'
         } else if (event.type === 'done') {
           if (event.sessionId) {
             sessionId.value = event.sessionId
+          }
+          const target = messages.value.find((m) => m.id === assistantId)
+          if (target) {
+            target.content = toPlainChatText(target.content)
           }
         }
       }
@@ -391,7 +403,7 @@ function clearChat() {
               <span class="dot" /><span class="dot" /><span class="dot" />
             </template>
             <template v-else>
-              {{ msg.content }}
+              {{ msg.role === 'assistant' ? toPlainChatText(msg.content) : msg.content }}
               <span
                 v-if="msg.role === 'assistant' && loading && msg === messages[messages.length - 1] && msg.content"
                 class="cursor"
