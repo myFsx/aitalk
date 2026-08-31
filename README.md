@@ -3,7 +3,7 @@
 基于 **Nuxt 全栈** 的智能客服演示项目：手机聊天气泡 UI、SSE 流式回复、DeepSeek Function Calling（天气 API + 本地 FAQ）、PostgreSQL 会话记忆与历史管理。
 
 > 线上演示（部署后替换）：`https://你的域名/ai`  
-> 仓库：https://github.com/myFsx/aitalk
+> 仓库：[https://github.com/myFsx/aitalk](https://github.com/myFsx/aitalk)
 
 ---
 
@@ -21,15 +21,19 @@
 
 ## 技术栈
 
-| 层级 | 技术 |
-|------|------|
-| 前端 | Vue 3、Nuxt、手机聊天气泡 UI |
-| 后端 | Nuxt Server / Nitro API |
-| AI | DeepSeek Chat API（tools + stream） |
-| 数据 | Prisma、PostgreSQL（Neon 等） |
-| 外部能力 | Open-Meteo 天气、本地 `faq.json` |
+
+| 层级   | 技术                                |
+| ---- | --------------------------------- |
+| 前端   | Vue 3、Nuxt、手机聊天气泡 UI              |
+| 后端   | Nuxt Server / Nitro API           |
+| AI   | DeepSeek Chat API（tools + stream） |
+| 数据   | Prisma、PostgreSQL（Neon 等）         |
+| 外部能力 | Open-Meteo 天气、本地 `faq.json`       |
+
 
 ---
+
+
 
 ## 核心链路
 
@@ -52,13 +56,19 @@
 
 ---
 
+
+
 ## 本地运行
+
+
 
 ### 1. 安装依赖
 
 ```bash
 npm install
 ```
+
+
 
 ### 2. 配置环境变量
 
@@ -70,11 +80,15 @@ AI_API_KEY="your-deepseek-api-key"
 AI_BASE_URL="https://api.deepseek.com"
 ```
 
+
+
 ### 3. 同步数据库表
 
 ```bash
 npx prisma db push
 ```
+
+
 
 ### 4. 启动
 
@@ -82,7 +96,7 @@ npx prisma db push
 npm run dev
 ```
 
-浏览器打开：http://127.0.0.1:3000/ai
+浏览器打开：[http://127.0.0.1:3000/ai](http://127.0.0.1:3000/ai)
 
 可试：
 
@@ -90,6 +104,8 @@ npm run dev
 - 「七天无理由怎么退货？」
 
 ---
+
+
 
 ## 生产构建
 
@@ -101,6 +117,8 @@ npm run start
 部署时需配置与本地相同的环境变量：`DATABASE_URL`、`AI_API_KEY`、`AI_BASE_URL`。
 
 ---
+
+
 
 ## 项目结构（简）
 
@@ -115,8 +133,3 @@ prisma/schema.prisma      # Session / Message 模型
 
 ---
 
-## 说明
-
-- FAQ 当前为关键词检索，适合演示；可扩展为向量 RAG。
-- 天气使用 Open-Meteo 公开接口，无需申请天气 Key。
-- 本仓库不包含真实 `.env`，请勿提交密钥。
