@@ -6,9 +6,17 @@
 
 ## 演示视频
 
-<video src="./docs/demo.mp4" controls width="360"></video>
+**请按下面 4 步操作后，这里会出现可播放的视频**（仓库里的相对路径视频，GitHub README **不会**直接显示播放器）：
 
-若上方无法播放，可直接下载：[docs/demo.mp4](./docs/demo.mp4)
+1. 打开：https://github.com/myFsx/aitalk/edit/main/README.md  
+2. 用鼠标把本地的 `docs/demo.mp4` **拖进**网页编辑框  
+3. 等上传完成，GitHub 会自动插入一行  
+   `https://github.com/user-attachments/assets/……`  
+4. Commit changes 保存  
+
+上传成功后，把自动生成的那一行保留在「演示视频」标题下面即可；下面这行临时入口也可先用：
+
+[打开 docs/demo.mp4 观看](https://github.com/myFsx/aitalk/blob/main/docs/demo.mp4)
 
 ---
 
