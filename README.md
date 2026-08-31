@@ -5,6 +5,7 @@
 仓库：[https://github.com/myFsx/aitalk](https://github.com/myFsx/aitalk)
 
 ## 演示视频
+如果视频卡顿请下载观看。
 
 <video src="https://github.com/user-attachments/assets/64b1593a-fd70-493b-aea3-a7f7ef55fd3c" controls width="360"></video>
 
